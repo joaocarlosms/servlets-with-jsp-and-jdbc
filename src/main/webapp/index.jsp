@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HELLO WORLD!</title>
+<title>Test JSP</title>
 </head>
 <body>
 
+	<h1>Test h1</h1>
+	
+	<%
+		out.print("Testando print da tag java no jsp");
+	%>
+	
 </body>
 </html>
