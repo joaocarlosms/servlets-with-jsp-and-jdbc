@@ -8,11 +8,12 @@
 </head>
 <body>
 
-	<h1>Test h1</h1>
-	
-	<%
-		out.print("Testando print da tag java no jsp");
-	%>
+	<h1>Enviar dados</h1>
+	<form action="receive-name.jsp">
+		<input name="name">
+		<input name="age">
+		<input type="submit" value="Enviar"> 
+	</form>
 	
 </body>
 </html>
