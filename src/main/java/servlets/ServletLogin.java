@@ -30,13 +30,25 @@ public class ServletLogin extends HttpServlet {
 
 		if(login != null && !login.isEmpty() 
 				&& password != null && !password.isEmpty()) {
+			
 			ModelLogin modelLogin = new ModelLogin();
 			modelLogin.setLogin(login);
 			modelLogin.setPassword(password);
-			System.out.println("Login with success!");
+			
+			/*Simulate Login*/
+			if(modelLogin.getLogin().equalsIgnoreCase("admin")
+					&& modelLogin.getPassword().equalsIgnoreCase("admin")) {
+				
+				request.getSession().setAttribute("user", modelLogin.getLogin());
+				RequestDispatcher redirect = request.getRequestDispatcher("/principal/principal.jsp");
+				redirect.forward(request, response);
+			} else {
+				RequestDispatcher redirect = request.getRequestDispatcher("/"); 
+				request.setAttribute("msg", "Login e/ou password incorreto(s)!");
+				redirect.forward(request, response);
+			}
 			
 		} else {
-			System.out.println("DADOS VAZIOS");
 			RequestDispatcher redirect = request.getRequestDispatcher("/"); 
 			request.setAttribute("msg", "Informe o login e a senha corretamente!");
 			redirect.forward(request, response);
@@ -44,3 +56,13 @@ public class ServletLogin extends HttpServlet {
 	}
 }
   
+
+
+
+
+
+
+
+
+
+
