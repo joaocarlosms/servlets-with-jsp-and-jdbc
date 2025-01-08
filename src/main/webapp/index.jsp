@@ -9,7 +9,7 @@
 <body>
 
 	<h1>Enviar dados</h1>
-	<form action="ServletLogin" method="post">
+	<form action="/jsp-course/test/ServletLogin" method="post">
 		<input name="name">
 		<input name="age">
 		<input type="submit" value="Enviar"> 
