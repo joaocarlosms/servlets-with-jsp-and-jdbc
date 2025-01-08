@@ -10,10 +10,24 @@
 
 	<h1>Enviar dados</h1>
 	<form action="/jsp-course/test/ServletLogin" method="post">
-		<input name="name">
-		<input name="age">
-		<input type="submit" value="Enviar"> 
+		<table>
+			<tr>
+				<td><label>Login</label></td>
+				<td><input name="login" type="text"></td>
+			</tr>
+			
+			<tr>
+				<td><label>Password</label></td>
+				<td><input name="password" type="password"></td>
+			</tr>
+			
+			<tr>
+				<td><input type="submit" value="Enviar"></td>
+			</tr>
+		</table>
 	</form>
+	
+	<h1>${msg}</h1>
 	
 </body>
 </html>
