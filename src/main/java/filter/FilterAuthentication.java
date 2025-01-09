@@ -68,6 +68,8 @@ public class FilterAuthentication extends HttpFilter implements Filter {
 				/*pass the request along the filter chain*/ 
 				chain.doFilter(request, response);
 			}
+			
+			connection.commit(); /*Comita as alterações no database caso dê tudo certo*/
 		
 		}catch(Exception e) {
 			e.printStackTrace();
