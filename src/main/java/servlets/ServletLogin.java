@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ModelLogin;
 
-@javax.servlet.annotation.WebServlet("/test/ServletLogin")
+@javax.servlet.annotation.WebServlet(urlPatterns = {"/test/ServletLogin", "/principal/test/ServletLogin"})
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public ServletLogin() {
-
+    	super();
     }
     
     /*Recebe os dados da URL em parametros*/
@@ -27,6 +27,7 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
+		String url = request.getParameter("url");
 
 		if(login != null && !login.isEmpty() 
 				&& password != null && !password.isEmpty()) {
@@ -40,10 +41,16 @@ public class ServletLogin extends HttpServlet {
 					&& modelLogin.getPassword().equalsIgnoreCase("admin")) {
 				
 				request.getSession().setAttribute("user", modelLogin.getLogin());
-				RequestDispatcher redirect = request.getRequestDispatcher("/principal/principal.jsp");
+				
+				if(url == null || url.equals("null")) {
+					url = "/principal/principal.jsp";
+				}
+				
+				RequestDispatcher redirect = request.getRequestDispatcher(url);
 				redirect.forward(request, response);
-			} else {
-				RequestDispatcher redirect = request.getRequestDispatcher("/"); 
+			
+			  } else {
+				RequestDispatcher redirect = request.getRequestDispatcher("/index.jsp"); 
 				request.setAttribute("msg", "Login e/ou password incorreto(s)!");
 				redirect.forward(request, response);
 			}

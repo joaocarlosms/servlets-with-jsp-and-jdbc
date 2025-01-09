@@ -10,6 +10,7 @@
 
 	<h1>Enviar dados</h1>
 	<form action="/jsp-course/test/ServletLogin" method="post">
+		<input type="hidden" value="<%= request.getParameter("url") %>" name="url">
 		<table>
 			<tr>
 				<td><label>Login</label></td>
