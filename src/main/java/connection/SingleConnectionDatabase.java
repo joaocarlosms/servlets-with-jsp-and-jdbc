@@ -21,6 +21,10 @@ public class SingleConnectionDatabase {
 	public SingleConnectionDatabase() {
 		connect();
 	}
+
+	public static Connection getConnection() {
+		return connection;
+	}
 	
 	public static void connect() {
 		try {

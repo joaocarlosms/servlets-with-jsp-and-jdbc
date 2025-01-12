@@ -8,13 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DAOLoginRepository;
 import model.ModelLogin;
 
 @javax.servlet.annotation.WebServlet(urlPatterns = {"/test/ServletLogin", "/principal/test/ServletLogin"})
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ServletLogin() {
+	private DAOLoginRepository daoLoginRepository = new DAOLoginRepository();;
+
+	public ServletLogin() {
     	super();
     }
     
@@ -28,38 +30,42 @@ public class ServletLogin extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		String url = request.getParameter("url");
-
-		if(login != null && !login.isEmpty() 
-				&& password != null && !password.isEmpty()) {
+		
+		try {
 			
-			ModelLogin modelLogin = new ModelLogin();
-			modelLogin.setLogin(login);
-			modelLogin.setPassword(password);
-			
-			/*Simulate Login*/
-			if(modelLogin.getLogin().equalsIgnoreCase("admin")
-					&& modelLogin.getPassword().equalsIgnoreCase("admin")) {
+			if(login != null && !login.isEmpty() 
+					&& password != null && !password.isEmpty()) {
 				
-				request.getSession().setAttribute("user", modelLogin.getLogin());
+				ModelLogin modelLogin = new ModelLogin();
+				modelLogin.setLogin(login);
+				modelLogin.setPassword(password);
 				
-				if(url == null || url.equals("null")) {
-					url = "/principal/principal.jsp";
+				if(daoLoginRepository.validateAuthentication(modelLogin)) {
+					request.getSession().setAttribute("user", modelLogin.getLogin());
+										
+					if(url == null || url.equals("null")) {
+						url = "/principal/principal.jsp";
+					}
+					
+					RequestDispatcher redirect = request.getRequestDispatcher(url);
+					redirect.forward(request, response);	
+					
+				} else {
+					RequestDispatcher redirect = request.getRequestDispatcher("/index.jsp"); 
+					request.setAttribute("msg", "Login e/ou Senha incorreto(s)!");
+					redirect.forward(request, response);
 				}
 				
-				RequestDispatcher redirect = request.getRequestDispatcher(url);
-				redirect.forward(request, response);
-			
-			  } else {
-				RequestDispatcher redirect = request.getRequestDispatcher("/index.jsp"); 
-				request.setAttribute("msg", "Login e/ou password incorreto(s)!");
+			} else {
+				RequestDispatcher redirect = request.getRequestDispatcher("/"); 
+				request.setAttribute("msg", "Informe o login e a senha corretamente!");
 				redirect.forward(request, response);
 			}
 			
-		} else {
-			RequestDispatcher redirect = request.getRequestDispatcher("/"); 
-			request.setAttribute("msg", "Informe o login e a senha corretamente!");
-			redirect.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
+		
 	}
 }
   
