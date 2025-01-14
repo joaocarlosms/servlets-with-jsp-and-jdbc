@@ -51,18 +51,25 @@
 
 	<h1>Realizar Login</h1>
 	
-	<form class="row g-3" action="/jsp-course/test/ServletLogin" method="post">
+	<form class="row g-3 needs-validation" action="/jsp-course/test/ServletLogin" method="post" novalidate>
 		
 		<input type="hidden" value="<%= request.getParameter("url") %>" name="url">
 		
 		<div class="col-md-6">
 		    <label id="login" for="inputEmail4" class="form-label">Login</label>
-		    <input type="text" class="form-control" id="inputEmail4">
+		    <input type="text" class="form-control" id="inputEmail4" required>
+	  		<div class="invalid-feedback">
+		      Obrigatório
+		    </div>
+	  		
 	  	</div>
 	  	
 	  	<div class="col-md-6">
 	    	<label id="password" for="inputPassword4" class="form-label">Senha</label>
-	    	<input type="password" class="form-control" id="inputPassword4">
+	    	<input type="password" class="form-control" id="inputPassword4" required>
+	    	<div class="invalid-feedback">
+		      Obrigatório
+		    </div>
 	  	</div>
 	  	
 	  	<div class="col-12">
@@ -74,5 +81,47 @@
 	<h5 class="msg">${msg}</h5>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	
+	<script type="text/javascript">
+		(() => {
+			'use strict'
+	
+			  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+			const forms = document.querySelectorAll('.needs-validation')
+
+			  // Loop over them and prevent submission
+		  Array.from(forms).forEach(form => {
+		    form.addEventListener('submit', event => {
+		      if (!form.checkValidity()) {
+		        event.preventDefault()
+		        event.stopPropagation()
+		      }
+	
+			     form.classList.add('was-validated')
+			   }, false)
+			 })
+		})()
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
