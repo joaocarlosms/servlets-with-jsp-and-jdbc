@@ -52,6 +52,7 @@ public class FilterAuthentication extends HttpFilter implements Filter {
 			HttpSession session = (HttpSession)req.getSession();
 			
 			String userLoggedIn = (String) session.getAttribute("user");
+			System.out.println(userLoggedIn);
 			
 			/*URL que está sendo acessada*/
 			String urlToAuth = req.getServletPath();

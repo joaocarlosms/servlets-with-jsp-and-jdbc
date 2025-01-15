@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class SingleConnectionDatabase {
-	private static String database = "jdbc:postgresql://localhost:5432/cursojsp?autoReconnect=true";
+	private static String database = "jdbc:postgresql://localhost:5432/coursejsp?autoReconnect=true";
 	private static String user = "postgres";
 	private static String password = "admin";
-	private static Connection connection = null;
+	private static Connection connection;
 	
 	/*Toda vez que for instanciada essa class
 	 * o construtor static vai rodar antes de tudo

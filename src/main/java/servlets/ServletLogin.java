@@ -31,6 +31,9 @@ public class ServletLogin extends HttpServlet {
 		String password = request.getParameter("password");
 		String url = request.getParameter("url");
 		
+		System.out.println(login);
+		System.out.println(password);
+		
 		try {
 			
 			if(login != null && !login.isEmpty() 
@@ -39,6 +42,7 @@ public class ServletLogin extends HttpServlet {
 				ModelLogin modelLogin = new ModelLogin();
 				modelLogin.setLogin(login);
 				modelLogin.setPassword(password);
+				System.out.println(modelLogin);
 				
 				if(daoLoginRepository.validateAuthentication(modelLogin)) {
 					request.getSession().setAttribute("user", modelLogin.getLogin());
@@ -47,6 +51,7 @@ public class ServletLogin extends HttpServlet {
 						url = "/principal/principal.jsp";
 					}
 					
+					System.out.println(url);
 					RequestDispatcher redirect = request.getRequestDispatcher(url);
 					redirect.forward(request, response);	
 					

@@ -57,7 +57,7 @@
 		
 		<div class="col-md-6">
 		    <label id="login" for="inputEmail4" class="form-label">Login</label>
-		    <input type="text" class="form-control" id="inputEmail4" required>
+		    <input type="text" class="form-control" id="inputEmail4" name="login" required>
 	  		<div class="invalid-feedback">
 		      Obrigatório
 		    </div>
@@ -66,7 +66,7 @@
 	  	
 	  	<div class="col-md-6">
 	    	<label id="password" for="inputPassword4" class="form-label">Senha</label>
-	    	<input type="password" class="form-control" id="inputPassword4" required>
+	    	<input type="password" class="form-control" id="inputPassword4" name="password" required>
 	    	<div class="invalid-feedback">
 		      Obrigatório
 		    </div>
