@@ -43,6 +43,14 @@
 	#password {
 		font-size: 30px;
 	}
+	
+	#inputEmail4 {
+		border-color: #7a7a7a;
+	}
+	
+	#inputPassword4 {
+		border-color: #7a7a7a;  
+	}
 		
 </style>
 
