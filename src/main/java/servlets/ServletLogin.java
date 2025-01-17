@@ -22,7 +22,7 @@ public class ServletLogin extends HttpServlet {
     
     /*Recebe os dados da URL em parametros*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		doPost(request, response);
 	}
 
 	/*Recebe dados enviados pelo formulário*/
@@ -42,7 +42,6 @@ public class ServletLogin extends HttpServlet {
 				ModelLogin modelLogin = new ModelLogin();
 				modelLogin.setLogin(login);
 				modelLogin.setPassword(password);
-				System.out.println(modelLogin);
 				
 				if(daoLoginRepository.validateAuthentication(modelLogin)) {
 					request.getSession().setAttribute("user", modelLogin.getLogin());
