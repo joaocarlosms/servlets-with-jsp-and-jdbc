@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import dao.DAOLoginRepository;
 import model.ModelLogin;
@@ -22,7 +23,16 @@ public class ServletLogin extends HttpServlet {
     
     /*Recebe os dados da URL em parametros*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		String action = request.getParameter("action");
+		
+		if(action != null && !action.isEmpty() && action.equalsIgnoreCase("logout")) {
+			request.getSession().invalidate();
+			RequestDispatcher redirect = request.getRequestDispatcher("/index.jsp");
+			redirect.forward(request, response);
+			
+		} else {
+			doPost(request, response);
+		}
 	}
 
 	/*Recebe dados enviados pelo formulário*/
