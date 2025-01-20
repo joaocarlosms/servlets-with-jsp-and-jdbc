@@ -12,7 +12,7 @@ import javax.websocket.Session;
 import dao.DAOLoginRepository;
 import model.ModelLogin;
 
-@javax.servlet.annotation.WebServlet(urlPatterns = {"/test/ServletLogin", "/principal/test/ServletLogin"})
+@javax.servlet.annotation.WebServlet(urlPatterns = {"/ServletLogin", "/principal/ServletLogin"})
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DAOLoginRepository daoLoginRepository = new DAOLoginRepository();;

@@ -59,7 +59,7 @@
 
 	<h1>Realizar Login</h1>
 	
-	<form class="row g-3 needs-validation" action="/jsp-course/test/ServletLogin" method="post" novalidate>
+	<form class="row g-3 needs-validation" action="/jsp-course/ServletLogin" method="post" novalidate>
 		
 		<input type="hidden" value="<%= request.getParameter("url") %>" name="url">
 		

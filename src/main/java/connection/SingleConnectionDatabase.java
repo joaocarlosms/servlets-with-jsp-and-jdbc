@@ -18,9 +18,9 @@ public class SingleConnectionDatabase {
 		connect();
 	}
 	
-	public SingleConnectionDatabase() {
-		connect();
-	}
+//	public SingleConnectionDatabase() {
+//		connect();
+//	}
 
 	public static Connection getConnection() {
 		return connection;
