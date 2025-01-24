@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DAOUserRepository;
 import model.ModelLogin;
 
 /**
@@ -17,7 +18,8 @@ import model.ModelLogin;
 @WebServlet("/ServletUserController")
 public class ServletUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private DAOUserRepository userRepository = new DAOUserRepository();  
+	
     public ServletUserController() {
         super();
     }
@@ -27,23 +29,33 @@ public class ServletUserController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String nome = request.getParameter("name");
-		String email = request.getParameter("email");
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
+		try {
+			String id = request.getParameter("id");
+			String nome = request.getParameter("nome");
+			String email = request.getParameter("email");
+			String login = request.getParameter("login");
+			String password = request.getParameter("password");
+			
+			ModelLogin modelLogin = new ModelLogin();
+			modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
+			modelLogin.setNome(nome);
+			modelLogin.setEmail(email);
+			modelLogin.setLogin(login);
+			modelLogin.setPassword(password);
+			
+			userRepository.saveUser(modelLogin);
+			
+			RequestDispatcher redirect = request.getRequestDispatcher("/principal/user.jsp");
+			request.setAttribute("msg", "Operação realizada com sucesso!");
+			request.setAttribute("modelLogin", modelLogin);
+			redirect.forward(request, response);
 		
-		ModelLogin modelLogin = new ModelLogin();
-		modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
-		modelLogin.setNome(nome);
-		modelLogin.setEmail(email);
-		modelLogin.setLogin(login);
-		modelLogin.setPassword(password);
-		
-		System.out.println(modelLogin.toString());
-		
-		RequestDispatcher redirect = request.getRequestDispatcher("principal/user.jsp");
-		redirect.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+			RequestDispatcher redirect = request.getRequestDispatcher("erros.jsp");
+			request.setAttribute("msg", e.getMessage());
+			redirect.forward(request, response);
+		}
 	}
 
 }
