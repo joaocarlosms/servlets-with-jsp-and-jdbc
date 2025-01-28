@@ -36,7 +36,7 @@ public class DAOUserRepository {
 	public ModelLogin findUserByLogin(String login) throws Exception {
 		ModelLogin modelLogin = new ModelLogin();
 		
-		String sql = "SELECT * FROM public.model_login WHERE UPPER(login) = upper('"+login+"')";
+		String sql = "SELECT * FROM public.model_login WHERE UPPER(login) = UPPER('"+login+"')";
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet result = statement.executeQuery();
@@ -51,4 +51,19 @@ public class DAOUserRepository {
 		
 		return modelLogin;
 	}
+	
+	public boolean validateUserByLogin(String login) throws Exception {
+		String sql = "SELECT COUNT(1) > 0 AS existe FROM public.model_login WHERE UPPER('"+login+"')";
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet result = statement.executeQuery();
+		
+		result.next();
+		return result.getBoolean("existe");
+	}
+	
+	
+	
+	
+	
 }
