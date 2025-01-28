@@ -43,11 +43,11 @@ public class ServletUserController extends HttpServlet {
 			modelLogin.setLogin(login);
 			modelLogin.setPassword(password);
 			
-			userRepository.saveUser(modelLogin);
+			modelLogin = userRepository.saveUser(modelLogin);
 			
-			RequestDispatcher redirect = request.getRequestDispatcher("/principal/user.jsp");
 			request.setAttribute("msg", "Operação realizada com sucesso!");
 			request.setAttribute("modelLogin", modelLogin);
+			RequestDispatcher redirect = request.getRequestDispatcher("/principal/user.jsp");
 			redirect.forward(request, response);
 		
 		}catch(Exception e) {
