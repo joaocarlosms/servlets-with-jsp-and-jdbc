@@ -12,6 +12,16 @@ public class ModelLogin implements Serializable {
 	private String login;
 	private String password;
 	
+	public boolean isNew(Long id) {
+		if(id == null) { /*new user*/
+			return true;
+		} else if(id != null && id > 0) {
+			return false; /*user update*/
+		}
+		
+		return id == null;
+	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}

@@ -46,8 +46,14 @@ public class ServletUserController extends HttpServlet {
 			modelLogin.setPassword(password);
 			
 			if(userRepository.validateUserByLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
-				msg = "Já existe um usuário com o mesmo login, informe outro outro";
+				msg = "Já existe um usuário com o mesmo login, informe outro login";
 			} else {
+				if(modelLogin.isNew(modelLogin.getId())) {
+					msg = "Gravado com sucesso!";
+				} else {
+					msg = "Atualizado com sucesso!";
+				}
+				
 				modelLogin = userRepository.saveUser(modelLogin);
 			}
 			
