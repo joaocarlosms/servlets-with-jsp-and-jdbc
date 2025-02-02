@@ -63,33 +63,33 @@
 												<!-- Basic Form Inputs card start -->
 												<div class="card">
 													<div class="card-block">
-														<form class="form-material" action="<%= request.getContextPath( )%>/ServletUserController" method="post">
-															<div class="form-group form-default">
+														<form class="form-material"  action="<%= request.getContextPath( )%>/ServletUserController" method="post">
+															<div class="form-group form-default form-static-label">
 																<input type="text" name="id" id="id"
 																	class="form-control" readonly="readonly" value="${modelLogin.id}"> <span
 																	class="form-bar"></span> <label class="float-label">ID</label>
 															</div>
-															<div class="form-group form-default">
+															<div class="form-group form-default form-static-label">
 																<input type="text" name="nome" id="nome"
 																	class="form-control" required="required" value="${modelLogin.nome}"> <span
 																	class="form-bar"></span> <label class="float-label">Nome</label>
 															</div>
-															<div class="form-group form-default">
+															<div class="form-group form-default form-static-label">
 																<input type="text" name="email" id="email"
 																	class="form-control" required="required" value="${modelLogin.email}"> <span
 																	class="form-bar"></span> <label class="float-label">Email</label>
 															</div>
-															<div class="form-group form-default">
+															<div class="form-group form-default form-static-label">
 																<input type="text" name="login" id="login"
 																	class="form-control" required="required" value="${modelLogin.login}"> <span
 																	class="form-bar"></span> <label class="float-label">Login</label>
 															</div>
-															<div class="form-group form-default">
+															<div class="form-group form-default form-static-label">
 																<input type="password" name="password" id="password"
 																	class="form-control" required="required" value="${modelLogin.password}"> <span
 																	class="form-bar"></span> <label class="float-label">Senha</label>
 															</div>
-															<button class="btn btn-info waves-effect waves-light">Novo</button>
+															<button class="btn btn-info waves-effect waves-light" onclick="clearForm();">Novo</button>
 															<button class="btn btn-success waves-effect waves-light">Salvar</button>
 															<!-- <button class="btn btn-warning waves-effect waves-light">Warning
 																Button</button> -->
@@ -110,9 +110,21 @@
 					</div>
 				</div>
 			</div>
-
+			
 			<!-- Required Jquery -->
 			<jsp:include page="javascriptFile.jsp"></jsp:include>
+			
+			
+			<script type="text/javascript">
+				function clearForm() {
+					var elements = document.getElementById("formUser").elements;
+					
+					for(let p = 0; p < elements.length; p++) {
+						elements[p].value = '';
+					}
+				}
+			</script>
+			
 </body>
 
 </html>
