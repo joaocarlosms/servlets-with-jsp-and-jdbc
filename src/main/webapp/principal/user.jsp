@@ -63,7 +63,8 @@
 												<!-- Basic Form Inputs card start -->
 												<div class="card">
 													<div class="card-block">
-														<form class="form-material"  action="<%= request.getContextPath( )%>/ServletUserController" method="post">
+														<form id="formUser" class="form-material"  action="<%= request.getContextPath( )%>/ServletUserController" method="post">
+															<input type="hidden" name="acao" id="acao" value="">															
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="id" id="id"
 																	class="form-control" readonly="readonly" value="${modelLogin.id}"> <span
@@ -89,11 +90,11 @@
 																	class="form-control" required="required" value="${modelLogin.password}"> <span
 																	class="form-bar"></span> <label class="float-label">Senha</label>
 															</div>
-															<button class="btn btn-info waves-effect waves-light" onclick="clearForm();">Novo</button>
-															<button type="button" class="btn btn-success waves-effect waves-light">Salvar</button>
+															<button type="button" class="btn btn-info waves-effect waves-light" onclick="clearForm();">Novo</button>
+															<button class="btn btn-success waves-effect waves-light">Salvar</button>
 															<!-- <button class="btn btn-warning waves-effect waves-light">Warning
 																Button</button> -->
-															<button type="button" class="btn btn-danger waves-effect waves-light">Deletar</button>
+															<button type="button" class="btn btn-danger waves-effect waves-light" onclick="deleteUser();">Deletar</button>
 														</form>
 													</div>
 												</div>
@@ -123,6 +124,12 @@
 						elements[p].value = '';
 					}
 				}
+				
+				function deleteUser() {
+					document.getElementById("formUser").method = 'get';
+					document.getElementById("acao").value = 'deletar'
+					document.getElementById("formUser").submit();
+				}				
 			</script>
 			
 </body>

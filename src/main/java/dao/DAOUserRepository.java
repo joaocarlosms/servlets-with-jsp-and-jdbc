@@ -63,6 +63,16 @@ public class DAOUserRepository {
 		return result.getBoolean("existe");
 	}
 	
+	public void deleteUserById(Long idUser)throws Exception {
+		String sql = "DELETE FROM public.model_login WHERE id = ?;";
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setLong(1, Long.parseLong(sql));
+		statement.executeUpdate();
+		
+		connection.commit();
+	}
+	
 //	public ModelLogin updateUserByLogin(String id) {
 //		
 //	}
