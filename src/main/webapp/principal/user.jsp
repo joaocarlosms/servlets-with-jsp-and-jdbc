@@ -90,10 +90,10 @@
 																	class="form-bar"></span> <label class="float-label">Senha</label>
 															</div>
 															<button class="btn btn-info waves-effect waves-light" onclick="clearForm();">Novo</button>
-															<button class="btn btn-success waves-effect waves-light">Salvar</button>
+															<button type="button" class="btn btn-success waves-effect waves-light">Salvar</button>
 															<!-- <button class="btn btn-warning waves-effect waves-light">Warning
 																Button</button> -->
-															<button class="btn btn-danger waves-effect waves-light">Deletar</button>
+															<button type="button" class="btn btn-danger waves-effect waves-light">Deletar</button>
 														</form>
 													</div>
 												</div>
