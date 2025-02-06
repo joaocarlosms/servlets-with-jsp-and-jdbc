@@ -63,7 +63,7 @@
 												<!-- Basic Form Inputs card start -->
 												<div class="card">
 													<div class="card-block">
-														<form id="formUser" class="form-material"  action="<%= request.getContextPath( )%>/ServletUserController" method="post">
+														<form id="formUser" \class="form-material"  action="<%= request.getContextPath( )%>/ServletUserController" method="post">
 															<input type="hidden" name="acao" id="acao" value="">															
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="id" id="id"
@@ -126,9 +126,11 @@
 				}
 				
 				function deleteUser() {
-					document.getElementById("formUser").method = 'get';
-					document.getElementById("acao").value = 'deletar'
-					document.getElementById("formUser").submit();
+					if(confirm('Deseja realmente excluir os dados')) {
+						document.getElementById("formUser").method = 'get';
+						document.getElementById("acao").value = 'deletar'
+						document.getElementById("formUser").submit();	
+					}					
 				}				
 			</script>
 			
