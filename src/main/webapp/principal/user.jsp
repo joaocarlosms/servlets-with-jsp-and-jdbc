@@ -131,9 +131,28 @@
 						document.getElementById("acao").value = 'deletar'
 						document.getElementById("formUser").submit();	
 					}					
-				}				
+				}
+				
+				function deleteUserWithAjax() {
+					if(confirm('Deseja realmente excluiir os dados?')) {
+						var urlAction = document.getElementById('formUser').action;
+						var idUser = document.getElementById('id').value;
+						
+						$.ajax({
+							method: "get",
+							url: urlAction,
+							data: "id"+ idUser + "acao-deletarajax",
+							success: function(response) {
+								
+								clearForm();
+								document.getElementById('msg').textContent = response;
+							}
+						}).fail(function(xhr, status, errorThrow) {
+							alert('Erro ao deletar usuário por id:' + xhr.responseText);
+						});
+					}	
+				}
 			</script>
-			
 </body>
 
 </html>
