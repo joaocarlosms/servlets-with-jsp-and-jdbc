@@ -1,7 +1,7 @@
-Descrição
+Descrição:
 Este é um sistema de gestão de clientes desenvolvido utilizando Java Server Pages (JSP) e JDBC. O sistema permite adicionar, visualizar, atualizar e excluir informações de clientes em um banco de dados.
 
-Funcionalidades
+Funcionalidades:
 Adicionar novos clientes: Insira informações detalhadas de novos clientes no sistema.
 
 Visualizar lista de clientes: Consulte uma lista completa com todos os clientes cadastrados.
